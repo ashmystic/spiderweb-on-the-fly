@@ -1,0 +1,29 @@
+
+html, body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    
+    /* TODO: uncomment this when app is done */
+    background-color: #1A1A1A;
+}
+canvas {
+    width: 100%;
+    height: 100%;
+    /* box-sizing: border-box; */
+    background-color: #1A1A1A;
+}
+
+canvas[resize="true"] {
+    width: 100%;
+    height: 100%;
+}
+
+#fullscreen-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 5px;
+  background-color: #6A809A;
+}
