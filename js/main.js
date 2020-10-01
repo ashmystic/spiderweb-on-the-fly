@@ -18,13 +18,27 @@ window.onload = function() {
     console.log('ServiceWorker not found in navigator');
   }
   
+  // Setup Paper.js
+  paper.install(window);
+  paper.setup('canvas-spiderweb');
+  
+  app = new Spiderweb_Manager(window, view);
+  // app.init();
+  
   // Setup fullscreen-mode handlers
   var fullscreenButton = document.getElementById('fullscreen-button');
+  var canvasSpiderweb = document.getElementById('canvas-spiderweb');
+  canvasContext = canvasSpiderweb.getContext('2d');
   // var fsExitDocButton = document.getElementById('fs-exit-doc-button');
   
   fullscreenButton.addEventListener('click', function(e) {
     e.preventDefault();
-    fullscreenButton.style.display = 'none';
+    // fullscreenButton.style.display = 'none';
+    // canvasSpiderweb.style.width = '100%';
+    // canvasSpiderweb.style.height = '100%';
+    // canvasContext.canvas.width = window.innerWidth;
+    // canvasContext.canvas.height = window.innerHeight;
+    app.init();
     requestFullscreen(document.documentElement);
   });
   
@@ -34,16 +48,12 @@ window.onload = function() {
     // exitFullscreen();
   // });
   
-  // Setup Paper.js
-  paper.install(window);
-  paper.setup('canvas-spiderweb');
   
-  app = new Spiderweb_Manager(window, view);
-  app.init();
 };
 
 window.onresize = function() {
   // TODO: resize web to fit screen?
+  // app.init();
 };
 
 var requestFullscreen = function(ele) {

@@ -48,12 +48,12 @@ class Spiderweb_Manager {
     // Info panel
     this.textItem = new PointText({
       content: '',
-      point: new Point(20, 30),
+      point: new Point(20, 80),
       fontSize: 15,
       fillColor: 'white',
     });
     // Draw line underneath title
-    var p = new Path([20, 40], [210, 40]);
+    var p = new Path([20, 90], [210, 90]);
     p.strokeColor = 'white';
     p.strokeWidth = this.defaultStrokeWidth;
     
