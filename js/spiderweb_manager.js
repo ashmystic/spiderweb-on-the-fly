@@ -324,7 +324,7 @@ class Spiderweb_Manager {
     // Set destination
     if (this.nextPoint === null) {
       var leftWindow = this.getRandomInt(this.pointHub.x - this.maxRadius + this.spiralDistance * 2, this.pointHub.x - this.hubRadius);
-      var rightWindow = this.getRandomInt(this.pointHub.x + this.hubRadius * 3, this.pointHub.x + this.maxRadius - this.spiralDistance);
+      var rightWindow = this.getRandomInt(this.pointHub.x + this.hubRadius * 3, this.pointHub.x + this.maxRadius - this.spiralDistance * 2);
       var x = Math.random() < 0.5 ? leftWindow : rightWindow;
     
       this.nextPoint = new Point(x, this.pointHub.y);

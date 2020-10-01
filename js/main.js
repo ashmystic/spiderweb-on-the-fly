@@ -23,7 +23,7 @@ window.onload = function() {
   paper.setup('canvas-spiderweb');
   
   app = new Spiderweb_Manager(window, view);
-  // app.init();
+  app.init();
   
   // Setup fullscreen-mode handlers
   var fullscreenButton = document.getElementById('fullscreen-button');
