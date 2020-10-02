@@ -27,33 +27,17 @@ window.onload = function() {
   
   // Setup fullscreen-mode handlers
   var fullscreenButton = document.getElementById('fullscreen-button');
-  var canvasSpiderweb = document.getElementById('canvas-spiderweb');
-  canvasContext = canvasSpiderweb.getContext('2d');
-  // var fsExitDocButton = document.getElementById('fs-exit-doc-button');
   
   fullscreenButton.addEventListener('click', function(e) {
     e.preventDefault();
-    // fullscreenButton.style.display = 'none';
-    // canvasSpiderweb.style.width = '100%';
-    // canvasSpiderweb.style.height = '100%';
-    // canvasContext.canvas.width = window.innerWidth;
-    // canvasContext.canvas.height = window.innerHeight;
     app.init();
     requestFullscreen(document.documentElement);
   });
-  
-  // fsExitDocButton.addEventListener('click', function(e) {
-    // e.preventDefault();
-    // fullscreenButton.style.display = 'default';
-    // exitFullscreen();
-  // });
-  
-  
-};
-
-window.onresize = function() {
-  // TODO: resize web to fit screen?
-  // app.init();
+  fullscreenButton.addEventListener('touchstart', function(e) {
+    e.preventDefault();
+    app.init();
+    requestFullscreen(document.documentElement);
+  });
 };
 
 var requestFullscreen = function(ele) {
@@ -65,20 +49,6 @@ var requestFullscreen = function(ele) {
     ele.mozRequestFullScreen();
   } else if (ele.msRequestFullscreen) {
     ele.msRequestFullscreen();
-  } else {
-    console.log('Fullscreen API is not supported.');
-  }
-};
-
-var exitFullscreen = function() {
-  if (document.exitFullscreen) {
-    document.exitFullscreen();
-  } else if (document.webkitExitFullscreen) {
-    document.webkitExitFullscreen();
-  } else if (document.mozCancelFullScreen) {
-    document.mozCancelFullScreen();
-  } else if (document.msExitFullscreen) {
-    document.msExitFullscreen();
   } else {
     console.log('Fullscreen API is not supported.');
   }
