@@ -10,7 +10,7 @@ class Fly {
     this.animate = true;
     this.rotationToggle = true;
     
-    this.animationStep = 1.5;
+    this.animationStep = 2;
     
     var bodyEllipseRadius = 12;
     var bodyEllipse = new Path.Ellipse({

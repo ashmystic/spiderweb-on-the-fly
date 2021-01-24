@@ -40,8 +40,6 @@ window.onload = function() {
   
   window.addEventListener('resize', function(e) {
     e.preventDefault();
-    
-    
     resizeApp();
   });
 };
@@ -57,13 +55,13 @@ var requestFullscreen = function(ele) {
     ele.msRequestFullscreen();
   } else {
     console.log('Fullscreen API is not supported.');
-    resizeApp();
   }
+  // Call this here in case fullscreen mode is not activated
+  resizeApp();
 };
 
 var resizeApp = function() {
   setTimeout(function(){
-    
     app.init(view.viewSize.width, view.viewSize.height);
   }, 100);
 };

@@ -1,4 +1,4 @@
-var CACHE_NAME = 'spiderweb-cache-v2';
+var CACHE_NAME = 'spiderweb-cache-v3';
 var urlsToCache = [
   '/index.html',
   '/css/style.css',
