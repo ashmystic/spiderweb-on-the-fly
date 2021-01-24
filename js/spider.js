@@ -13,7 +13,7 @@ class Spider {
     this.isAnimated = false;
     this.rotationToggle = true;
     
-    this.animationStep = 1;
+    this.animationStep = 1.5;
     
    var bodyCircleRadius = 12; 
     var bodyCircle = new Path.Circle({

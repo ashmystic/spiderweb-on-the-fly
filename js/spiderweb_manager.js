@@ -52,7 +52,7 @@ class Spiderweb_Manager {
     this.fly = new Fly(new Point(-50, this.height/2));
     
     // Scale down sizes for small web
-    if(this.height < 450) {
+    if(this.width < 450 || this.height < 450) {
       this.radiiAnimationStep = 3;
       
       this.spiralDistanceStart = 2;
