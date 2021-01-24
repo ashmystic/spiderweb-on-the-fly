@@ -4,6 +4,7 @@ var app;
 window.onload = function() {
   
   // Setup service worker for caching files
+  /*
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
       navigator.serviceWorker.register('/service_worker.js').then(function(registration) {
@@ -17,26 +18,29 @@ window.onload = function() {
   } else {
     console.log('ServiceWorker not found in navigator');
   }
+  */
   
   // Setup Paper.js
   paper.install(window);
   paper.setup('canvas-spiderweb');
   
   app = new Spiderweb_Manager(window, view);
-  app.init();
   
   // Setup fullscreen-mode handlers
   var fullscreenButton = document.getElementById('fullscreen-button');
   
   fullscreenButton.addEventListener('click', function(e) {
     e.preventDefault();
-    app.init();
     requestFullscreen(document.documentElement);
   });
   fullscreenButton.addEventListener('touchstart', function(e) {
     e.preventDefault();
-    app.init();
     requestFullscreen(document.documentElement);
+  });
+  
+  window.addEventListener('resize', function(e) {
+    e.preventDefault();
+    resizeApp();
   });
 };
 
@@ -51,7 +55,14 @@ var requestFullscreen = function(ele) {
     ele.msRequestFullscreen();
   } else {
     console.log('Fullscreen API is not supported.');
+    resizeApp();
   }
+};
+
+var resizeApp = function() {
+  setTimeout(function(){ 
+    app.init(window.innerWidth, window.innerHeight);
+  }, 100);
 };
 
 /*

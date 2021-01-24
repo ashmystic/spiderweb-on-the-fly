@@ -9,10 +9,11 @@ class Spider {
     this.group.applyMatrix = false;
     this.angle = 0;
     
-    this.animate = true;
+    this.animateIntervalMilliseconds = 250;
+    this.isAnimated = false;
     this.rotationToggle = true;
     
-    this.animationStep = 2;
+    this.animationStep = 1;
     
    var bodyCircleRadius = 12; 
     var bodyCircle = new Path.Circle({
@@ -129,6 +130,8 @@ class Spider {
     leg8.position = new Point(this.position.x - bodyCircleRadius, this.position.y + headCircleRadius);
     this.group.addChild(leg8);
     this.leg8 = leg8;
+    
+    this.animate(true);
   }
   
   setPosition(position) {
@@ -137,8 +140,7 @@ class Spider {
   
   moveToPosition(position, callback) {
     this.destination = position;
-    this.animate = true;
-    
+    this.animate(true);
     if(callback) {
       this.moveToPositionCallback = callback;
     }
@@ -148,34 +150,52 @@ class Spider {
     this.group.rotation = this.angle = angle;
   }
   
+  scale(factor) {
+    this.group.scale(factor);
+  }
+  
+  animate(animate) {
+    if(animate && this.isAnimated === false) {
+      var self = this;
+      this.animateId = setInterval(function() {
+        
+        // Handle animating leg movement
+        self.rotationToggle = !self.rotationToggle;
+        var angle = self.rotationToggle ? 10 : -10;
+        
+        self.leg1.rotate(angle, self.headCircle.position);
+        self.leg2.rotate(angle, self.headCircle.position);
+        
+        self.leg3.rotate(-angle, self.headCircle.position);
+        self.leg4.rotate(-angle, self.headCircle.position);
+        
+        self.leg5.rotate(angle, self.bodyCircle.position);
+        self.leg6.rotate(angle, self.bodyCircle.position);
+        
+        self.leg7.rotate(-angle, self.bodyCircle.position);
+        self.leg8.rotate(-angle, self.bodyCircle.position);
+      }, this.animateIntervalMilliseconds);
+      
+      this.isAnimated = animate;
+      
+    } else if(animate === false && this.isAnimated) {
+      clearInterval(this.animateId);
+      
+      this.isAnimated = animate;
+    }
+  }
+  
   
   update(event) {
-    if(this.animate) {
-      // Handle animating leg movement
-      if((event.time % 0.25).toFixed(1) == 0.0) {
-        this.rotationToggle = !this.rotationToggle;
-        var angle = this.rotationToggle ? 10 : -10;
-        
-        this.leg1.rotate(angle, this.headCircle.position);
-        this.leg2.rotate(angle, this.headCircle.position);
-        
-        this.leg3.rotate(-angle, this.headCircle.position);
-        this.leg4.rotate(-angle, this.headCircle.position);
-        
-        this.leg5.rotate(angle, this.bodyCircle.position);
-        this.leg6.rotate(angle, this.bodyCircle.position);
-        
-        this.leg7.rotate(-angle, this.bodyCircle.position);
-        this.leg8.rotate(-angle, this.bodyCircle.position);
-      }
-      
+    if(this.isAnimated) {
       // Handle moving to a destination location
       if(this.destination != null) {
         var vector = VectorHelper.subtractVectors(this.destination, this.position);
         
         if(vector.length < this.animationStep) {
           this.setPosition(this.destination);
-          this.animate = false;
+          // this.animate = false;
+          this.animate(false);
           this.destination = null;
           log("Spider reached destination");
           if(this.moveToPositionCallback) {

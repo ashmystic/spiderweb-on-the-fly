@@ -4,12 +4,9 @@
 class Spiderweb_Manager {
   
   constructor(window, view) {
-    this.width = view.center.x*2;
-    this.height = view.center.y*2;
-    this.pointHub = view.center;
     
-    // this.maxRadius = this.height / 6;
-    this.maxRadius = this.height * (2/5);
+    // this.maxHeight = 300;
+    this.maxHeight = 700;
     this.defaultStrokeWidth = 1;
     this.minNumberRadii = 6;
     this.maxNumberRadii = 9;
@@ -18,8 +15,9 @@ class Spiderweb_Manager {
     this.radiiAnimationStep = 5;
     // this.radiiAnimationStep = 50;
     
-    this.spiralDistance = 100;
-    this.spiralDistanceOffset = 10;
+    this.spiralDistanceStart = 5;
+    this.spiralDistanceIncrement = 7;
+    this.spiralDistanceOffset = 3;
     this.spiralAnimationStep = 2;
     // this.spiralAnimationStep = 50;
     
@@ -30,20 +28,48 @@ class Spiderweb_Manager {
     this.netAnimationStep = 2;
     // this.netAnimationStep = 50;
     
-    this.flyAnimationStep = 2;
+    this.flyAnimationStep = 1;
     
     this.timeUntilNextWebSeconds = 10;
     
   }
 
-  init() {
+  init(windowWidth, windowHeight) {
     log("init");
     
     // Clear existing content
     project.activeLayer.removeChildren();
     
+    this.windowHeight = windowHeight;
+    this.width = windowWidth;
+    this.height = Math.min(this.windowHeight, this.maxHeight);
+    this.pointHub = new Point(this.width / 2, this.windowHeight / 2);
+    
+    // this.maxRadius = this.height / 6;
+    this.maxRadius = this.height * (2 / 5);
+    
     this.spider = new Spider(this.pointHub);
     this.fly = new Fly(new Point(-50, this.height/2));
+    
+    // Scale down sizes for small web
+    if(this.height < 450) {
+      this.radiiAnimationStep = 3;
+      
+      this.spiralDistanceStart = 2;
+      this.spiralDistanceIncrement = 4;
+      this.spiralDistanceOffset = 1;
+      this.spiralAnimationStep = 1;
+      
+      this.netDistance = 8;
+      this.netDistanceOffset = 1;
+      this.hubRadius = 20;
+      this.netAnimationStep = 1;
+      
+      this.spider.scale(0.5);
+      this.spider.animationStep = 1;
+      this.fly.scale(0.5);
+      this.fly.animationStep = 1;
+    }
     
     // Info panel
     this.textItem = new PointText({
@@ -60,6 +86,7 @@ class Spiderweb_Manager {
     this.numberRadii = this.getRandomInt(this.minNumberRadii, this.maxNumberRadii);
     log("numberRadii: " + this.numberRadii);
     
+    this.spiralDistance = this.spiralDistanceStart;
     this.totalWebLength = 0;
     
     this.radiiArray = [];
@@ -143,9 +170,7 @@ class Spiderweb_Manager {
         self.fly.moveToPosition(this.pointHub);
       
         // Move spider back to center
-        self.spider.moveToPosition(self.pointHub, function() {
-          self.spider.animate = false;
-        });
+        self.spider.moveToPosition(self.pointHub, function() {});
       });
       
     // Restart simulation after delay  
@@ -155,7 +180,7 @@ class Spiderweb_Manager {
         
       if(elapsedTime >= this.timeUntilNextWebSeconds) {
         // view.onFrame = null;
-        this.init();
+        this.init(this.width, this.windowHeight);
       }
     }
   }
@@ -212,7 +237,8 @@ class Spiderweb_Manager {
     
     if (this.nextPoint === null || this.currentPoint === this.nextPoint) {
       // Calculate the next point on the radii line to draw to
-      var nextPoint = VectorHelper.addVectors(radii.intersectionPoint, VectorHelper.multiply(radii.vector.normalize(), this.getRandomInt(this.spiralDistance - this.spiralDistanceOffset, this.spiralDistance + this.spiralDistanceOffset)));
+      this.spiralDistance += this.spiralDistanceIncrement;
+      var nextPoint = VectorHelper.addVectors(this.pointHub, VectorHelper.multiply(radii.vector.normalize(), this.getRandomInt(this.spiralDistance - this.spiralDistanceOffset, this.spiralDistance + this.spiralDistanceOffset)));
       log("nextPoint", nextPoint.toString());
     
       // Check if point is within radii line (within bounds of web)
@@ -220,7 +246,7 @@ class Spiderweb_Manager {
       log("radii.vector", radii.vector.toString());
       log("vector", vector.toString());
     
-      if (vector.length > radii.vector.length) {
+      if (vector.length + this.hubRadius / 2 > radii.vector.length) {
         isSpiralDrawn = true;
         this.currentRadiiIndex--;
         this.setPathforNet();
@@ -323,8 +349,8 @@ class Spiderweb_Manager {
     
     // Set destination
     if (this.nextPoint === null) {
-      var leftWindow = this.getRandomInt(this.pointHub.x - this.maxRadius + this.spiralDistance * 2, this.pointHub.x - this.hubRadius);
-      var rightWindow = this.getRandomInt(this.pointHub.x + this.hubRadius * 3, this.pointHub.x + this.maxRadius - this.spiralDistance * 2);
+      var leftWindow = this.getRandomInt(this.pointHub.x - this.maxRadius + this.hubRadius * 2, this.pointHub.x - this.hubRadius);
+      var rightWindow = this.getRandomInt(this.pointHub.x + this.hubRadius * 3, this.pointHub.x + this.maxRadius - this.hubRadius * 2);
       var x = Math.random() < 0.5 ? leftWindow : rightWindow;
     
       this.nextPoint = new Point(x, this.pointHub.y);

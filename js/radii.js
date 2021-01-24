@@ -14,9 +14,6 @@ class Radii {
     this.path.strokeColor = 'white';
     this.path.strokeWidth = 1;
     this.path.add(this.currentPoint);
-    
-    // var vector = this.destinationPoint - this.currentPoint;
-    
   }
   
   addNextPoint(point) {

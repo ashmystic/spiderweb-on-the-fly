@@ -10,7 +10,7 @@ class Fly {
     this.animate = true;
     this.rotationToggle = true;
     
-    this.animationStep = 2;
+    this.animationStep = 1;
     
     var bodyEllipseRadius = 12;
     var bodyEllipse = new Path.Ellipse({
@@ -61,6 +61,10 @@ class Fly {
   
   setAngle(angle) {
     this.group.rotation = this.angle = angle;
+  }
+  
+  scale(factor) {
+    this.group.scale(factor);
   }
   
   update(event) {
