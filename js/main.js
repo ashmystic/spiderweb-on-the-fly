@@ -42,6 +42,8 @@ window.onload = function() {
   
   window.addEventListener('resize', function(e) {
     e.preventDefault();
+    
+    
     resizeApp();
   });
 };
@@ -63,12 +65,15 @@ var requestFullscreen = function(ele) {
 
 var resizeApp = function() {
   setTimeout(function(){
-    htmlCanvas.width = window.innerWidth;
-    htmlCanvas.height = window.innerHeight;
+    if(window.fullscreen) {
+      // htmlCanvas.width = window.outerWidth;
+      // htmlCanvas.height = window.outerHeight;
+      
+      view.viewSize = [window.outerWidth, window.outerHeight];
+      view._needsUpdate = true;
+      view.update();
+    }
     
-    view.viewSize = [window.innerWidth, window.innerHeight];
-    view._needsUpdate = true;
-    view.update();
     app.init(view.viewSize.width, view.viewSize.height);
   }, 100);
 };
