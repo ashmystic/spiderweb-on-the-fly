@@ -1,3 +1,5 @@
+![Spiderweb banner](spiderweb_banner.PNG)
+
 # Spiderweb (on the Fly)
 “Spiderweb (on the Fly)” is a real-time software simulation of an orb-weaver (garden spider) web being built. Each web created is unique, just like those of spiders!
 
