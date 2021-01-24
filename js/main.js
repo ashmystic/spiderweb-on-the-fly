@@ -63,7 +63,7 @@ var requestFullscreen = function(ele) {
 
 var resizeApp = function() {
   setTimeout(function(){
-    app.init(window.innerWidth, window.innerHeight);
+    app.init(view.viewSize.width, view.viewSize.height);
   }, 100);
 };
 
