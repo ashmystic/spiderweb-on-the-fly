@@ -65,6 +65,7 @@ var requestFullscreen = function(ele) {
 
 var resizeApp = function() {
   setTimeout(function(){
+    /*
     if(window.fullscreen) {
       htmlCanvas.width = window.outerWidth;
       htmlCanvas.height = window.outerHeight;
@@ -73,6 +74,7 @@ var resizeApp = function() {
       view._needsUpdate = true;
       view.update();
     }
+    */
     
     app.init(view.viewSize.width, view.viewSize.height);
   }, 100);
