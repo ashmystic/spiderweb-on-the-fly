@@ -33,13 +33,11 @@ window.onload = function() {
   htmlCanvas = document.getElementById('canvas-spiderweb');
   fullscreenButton.addEventListener('click', function(e) {
     e.preventDefault();
-    // requestFullscreen(document.documentElement);
-    requestFullscreen(htmlCanvas);
+    requestFullscreen(document.documentElement);
   });
   fullscreenButton.addEventListener('touchstart', function(e) {
     e.preventDefault();
-    // requestFullscreen(document.documentElement);
-    requestFullscreen(htmlCanvas);
+    requestFullscreen(document.documentElement);
   });
   
   window.addEventListener('resize', function(e) {
@@ -65,9 +63,6 @@ var requestFullscreen = function(ele) {
 
 var resizeApp = function() {
   setTimeout(function(){
-    // htmlCanvas.style.width = window.innerWidth + "px";
-    // htmlCanvas.style.height = window.innerHeight + "px";
-    
     app.init(window.innerWidth, window.innerHeight);
   }, 100);
 };
