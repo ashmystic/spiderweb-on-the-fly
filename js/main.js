@@ -4,7 +4,6 @@ var app;
 window.onload = function() {
   
   // Setup service worker for caching files
-  /*
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
       navigator.serviceWorker.register('/service_worker.js').then(function(registration) {
@@ -18,7 +17,6 @@ window.onload = function() {
   } else {
     console.log('ServiceWorker not found in navigator');
   }
-  */
   
   // Setup Paper.js
   paper.install(window);
@@ -65,16 +63,6 @@ var requestFullscreen = function(ele) {
 
 var resizeApp = function() {
   setTimeout(function(){
-    /*
-    if(window.fullscreen) {
-      htmlCanvas.width = window.outerWidth;
-      htmlCanvas.height = window.outerHeight;
-      
-      view.viewSize = [window.outerWidth, window.outerHeight];
-      view._needsUpdate = true;
-      view.update();
-    }
-    */
     
     app.init(view.viewSize.width, view.viewSize.height);
   }, 100);
