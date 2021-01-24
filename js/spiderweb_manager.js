@@ -45,8 +45,9 @@ class Spiderweb_Manager {
     this.height = Math.min(this.windowHeight, this.maxHeight);
     this.pointHub = new Point(this.width / 2, this.windowHeight / 2);
     
+    this.minDimension = Math.min(this.width, this.height);
     // this.maxRadius = this.height / 6;
-    this.maxRadius = this.height * (2 / 5);
+    this.maxRadius = this.minDimension * (2 / 5);
     
     this.spider = new Spider(this.pointHub);
     this.fly = new Fly(new Point(-50, this.height/2));
