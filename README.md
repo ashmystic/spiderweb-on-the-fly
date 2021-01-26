@@ -3,9 +3,15 @@
 # Spiderweb (on the Fly)
 “Spiderweb (on the Fly)” is a real-time software simulation of an orb-weaver (garden spider) web being built. Each web created is unique, just like those of spiders!
 
-**Live site:** https://ashmystic.github.io/spiderweb-on-the-fly
-(click on the double arrow ">>" button in the top-right to expand to fullscreen mode.)
+## Live site
+- https://ashmystic.github.io/spiderweb-on-the-fly
+- Click on the double arrow ">>" button in the top-right to expand to fullscreen mode. This button also restarts the animation.
 
+## References
+- ["Early stages of orb web construction in Araneus diadematus"](https://bio.staern.li/pdf/zschokke1996rsz.pdf)
+- ["Vector Geometry in Paper.js"](http://paperjs.org/tutorials/geometry/vector-geometry/)
+
+## Simulation steps
 Below is an overview of the steps involved in creating the web. These correspond to the stages displayed in the top-left corner of the simulation.
 
 1. **Creating radii**
