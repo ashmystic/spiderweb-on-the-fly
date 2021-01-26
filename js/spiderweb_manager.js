@@ -28,9 +28,7 @@ class Spiderweb_Manager {
     this.netAnimationStep = 2;
     // this.netAnimationStep = 50;
     
-    this.flyAnimationStep = 1;
-    
-    this.timeUntilNextWebSeconds = 10;
+    this.timeUntilNextWebSeconds = 12;
     
   }
 
@@ -80,7 +78,7 @@ class Spiderweb_Manager {
       fillColor: 'white',
     });
     // Draw line underneath title
-    var p = new Path([20, 105], [210, 105]);
+    var p = new Path([20, 120], [210, 120]);
     p.strokeColor = 'white';
     p.strokeWidth = this.defaultStrokeWidth;
     
@@ -137,6 +135,7 @@ class Spiderweb_Manager {
     var timeLeft = this.timeOnCompletion === 0 ? "" : "Time until next web starts: " + (this.timeUntilNextWebSeconds - (event.time - this.timeOnCompletion)).toFixed(0);
     
     this.textItem.content = "SPIDERWEB (ON THE FLY)"
+              + "\n(About: https://git.io/Jtczo)"
               + "\n"
               + "\nCurrent stage " + stage
               + "\nTotal silk spun: " + this.getLengthInMeters(this.totalWebLength + this.path.length) + " meters"
@@ -361,13 +360,13 @@ class Spiderweb_Manager {
     
       var distance = this.nextPoint.x - this.currentPoint.x;
     
-      if (distance <= this.flyAnimationStep) {
+      if (distance <= this.fly.animationStep) {
         this.currentPoint = this.nextPoint;
         isFlyCaught = true;
         log("Fly reached destination");
       } else {
         var y = this.pointHub.y + (Math.sin(event.time) * this.maxRadius / 3);
-        this.currentPoint = new Point(this.currentPoint.x + this.flyAnimationStep, y);
+        this.currentPoint = new Point(this.currentPoint.x + this.fly.animationStep, y);
         this.fly.setPosition(this.currentPoint);
       }
     }
