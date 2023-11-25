@@ -53,6 +53,16 @@ The code starts in `main.js` where the `window.onload` function is defined. In t
 
 The most complex part of the simulation is the vector geometry calculations (figuring out where the next points and lines will go). Paper.js has vector geometry built-in, and their website has a helpful article on learning how to use it [here](http://paperjs.org/tutorials/geometry/vector-geometry/). You may notice that I made my own `Vector_Helper` class for vector operations. This is because the built-in "automatisms" like `point1 + point2` don't work when using JavaScript directly rather than the default PaperScript (see [this](http://paperjs.org/tutorials/getting-started/using-javascript-directly/) article).
 
+## Inspiration and artist statement
+
+So now, what is this project about? I was inspired to make Spiderweb (on the fly) one day after watching an orb weaver build its web in front of my house. I stood there mesmerized for about half an hour. I’m often drawn to elegant geometric and mathematical patterns and felt excited to piece together the building blocks of how a spiderweb is made. The simulation I created is quite simplified compared to real spiderweb construction, but I aimed to capture the fundamental steps fairly accurately.
+
+For reference I used [this](#references) scientific study on the building habits of orb weavers, written by Samuel ZSCHOKKE of the Department of Zoology at Oxford, UK and the Zoological Institute at the University of Basel, Switzerland. Special thanks goes to that team for the helpful information!
+
+So finally, what is the deeper meaning of this project? Spiderweb (on the fly) is my attempt to capture the ephemeral nature of spiderwebs. The spider spins an infinitely many number of unique intricate webs, one after another, each one erased before the next one begins. The spider keeps marching on building, but if you’re not there to witness it, then you’ll miss it! Like the proverbial tree falling in the woods, does a spiderweb grace the world with beauty even if no one is there to see it?
+
+And if you are present to see the web built, are you patient enough to wait for its completion and really appreciate it?
+
 ## References
 - ["Early stages of orb web construction in Araneus diadematus"](https://bio.staern.li/pdf/zschokke1996rsz.pdf)
 - [Paperjs.org](http://paperjs.org/)
