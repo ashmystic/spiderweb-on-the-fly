@@ -57,7 +57,7 @@ The most complex part of the simulation is the vector geometry calculations (fig
 
 So now, what is this project about? I was inspired to make Spiderweb (on the fly) one day after watching an orb weaver build its web in front of my house. I stood there mesmerized for about half an hour. I’m often drawn to elegant geometric and mathematical patterns and felt excited to piece together the building blocks of how a spiderweb is made. The simulation I created is quite simplified compared to real spiderweb construction, but I aimed to capture the fundamental steps fairly accurately.
 
-For reference I used [this](#references) scientific study on the building habits of orb weavers, written by Samuel ZSCHOKKE of the Department of Zoology at Oxford, UK and the Zoological Institute at the University of Basel, Switzerland. Special thanks goes to that team for the helpful information!
+For reference I used [this](https://bio.staern.li/pdf/zschokke1996rsz.pdf) scientific study on the building habits of orb weavers, written by Samuel ZSCHOKKE of the Department of Zoology at Oxford, UK and the Zoological Institute at the University of Basel, Switzerland. Special thanks goes to that team for the helpful information!
 
 So finally, what is the deeper meaning of this project? Spiderweb (on the fly) is my attempt to capture the ephemeral nature of spiderwebs. The spider spins an infinitely many number of unique intricate webs, one after another, each one erased before the next one begins. The spider keeps marching on building, but if you’re not there to witness it, then you’ll miss it! Like the proverbial tree falling in the woods, does a spiderweb grace the world with beauty even if no one is there to see it?
 
